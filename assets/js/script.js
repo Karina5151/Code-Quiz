@@ -5,6 +5,10 @@ var timer;
 var secondsLeft = 30
 var isGameOver = false;
 var questionDisplay = document.querySelector(".question-display");
+var questionTitle = document.querySelector("#questionTitle");
+var choices = document.querySelector("#choices");
+var startScreen = document.querySelector("#start-screen");
+
 
 var questions = [
     { question: "Inside which HTML element do we put the JavaScript to connect it to the HTML?", 
@@ -43,14 +47,20 @@ function startTimer() {
 }
 
 
-var showQuestion = []
 
 function displayQuestions() {
     console.log("click");
     console.log(questions[questionIdx].question);
-    showQuestion.push(questions[questionIdx].question);
-    console.log(showQuestion.join(""));
-    questionDisplay.innerHTML = showQuestion.join("");
+    console.log(questionTitle);
+    var currentQuestion = (questions[questionIdx]);
+    questionTitle.textContent = currentQuestion.question;
+    currentQuestion.answerChoices.forEach
+
+    // showQuestion.push(questions[questionIdx].question);
+    // console.log(showQuestion.join(""));
+    // questionDisplay.innerHTML = showQuestion.join("");
+
+
     // event listener for isAnswerCorrect
     // isAnswerCorrect();
     // if statement 
