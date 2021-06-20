@@ -4,7 +4,7 @@ var startButton = document.getElementById("start-button");
 var timer;
 var secondsLeft = 30
 var isGameOver = false;
-var questionDisplay = document.querySelector(".question-display");
+var showQuestion = document.querySelector("#show-question");
 var questionTitle = document.querySelector("#questionTitle");
 var choices = document.querySelector("#choices");
 var startScreen = document.querySelector("#start-screen");
@@ -54,27 +54,45 @@ function displayQuestions() {
     console.log(questionTitle);
     var currentQuestion = (questions[questionIdx]);
     questionTitle.textContent = currentQuestion.question;
-    currentQuestion.answerChoices.forEach
+    currentQuestion.answerChoices.forEach(element => {
+        console.log(element);
+        var currentAnswers = document.createElement("button");
+        console.log(currentAnswers);
+        currentAnswers.textContent = element;
+        choices.appendChild(currentAnswers);
+        currentAnswers.style.display = "block";
+        currentAnswers.style.margin = "10px";
+        startScreen.style.display = "none";
 
-    // showQuestion.push(questions[questionIdx].question);
-    // console.log(showQuestion.join(""));
-    // questionDisplay.innerHTML = showQuestion.join("");
+       
+    } );
+     
 
 
-    // event listener for isAnswerCorrect
+
+  
     // isAnswerCorrect();
     // if statement 
     // if questionIdx < questions.length
-    // show question using innerText and append child
-    // for loop to show answers
-    // create an element for each answer and append the text to it
+  
 }
 
 function isAnswerCorrect() {
+    
+
+    if (answerChoices.value === 0) {
+        infobox.innerHTML = "Correct!";
+    } else {
+        infoBox.innerHTML = ("Incorrect. Answer was: + "questions[questionIdx].correctAnswer" ");
+    }
+    
+    if (questionIdx < questions.length) {
     questionIdx++;
     displayQuestions();
-    // if selection === answers 
+    }
+
 }
+
 
 function answerIsWrong() {
     questionIdx++;
@@ -82,3 +100,5 @@ function answerIsWrong() {
 }
 
 startButton.addEventListener("click", displayQuestions);
+
+currentAnswers.addEventListener("click", isAnswerCorrect);   // event listener for isAnswerCorrect
