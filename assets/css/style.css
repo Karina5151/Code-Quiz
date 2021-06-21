@@ -33,3 +33,9 @@ button {
     font-size: 16px;
     
 }
+
+#answerCheck {
+    border-top: 2px solid grey;
+    color: grey;
+    width: 100%;
+}
