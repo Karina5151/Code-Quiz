@@ -1,39 +1,37 @@
+// Timer Elements
 var timer;
 var secondsLeft = 30;
 var timeLeft = document.querySelector("#timeLeft");
 
+// Start Screen Elements
 var startScreen = document.querySelector("#start-screen");
 var startButton = document.getElementById("start-button");
 
+// Question Display Elements
 var questionIdx = 0;
 var showQuestion = document.querySelector("#show-question");
 var questionTitle = document.querySelector("#questionTitle");
 var choices = document.querySelector("#choices");
 var answerCheck = document.querySelector("#answerCheck");
 
+// End Game Screen Elements
 var endGameSection = document.querySelector("#endGameSection");
 var endGameHeader = document.querySelector("#endGameHeader");
 var finalScore = document.querySelector("#finalScore");
 var inputInitials = document.querySelector("#initials");
 var initialsSubmitBtn = document.querySelector("#initialsSubmitBtn");
 
+// High Scores Screen Elements
 var highScoresSection = document.querySelector("#highScoresSection");
 var scores = document.querySelector("#scores");
 var lastPageBtns = document.querySelector("#lastPageBtns");
 var inputValidation = document.querySelector("#inputValidation");
 
-var highscoresPage = document.querySelector("#highscoresPage");
-
 
 // HighScores Page Display
 function HSPage() {
     displayPastScores();
-    var goBackBtn = document.createElement("button");
-    goBackBtn.textContent = "Go Back";
-    goBackBtn.className = "littleBtns";
-    lastPageBtns.appendChild(goBackBtn);
-    goBackBtn.addEventListener("click", restartGame);
-
+    // create Clear Highscores Button
     var clearHighScoresBtn = document.createElement("button");
     clearHighScoresBtn.textContent = "Clear Highscores";
     clearHighScoresBtn.className = "littleBtns";
@@ -54,8 +52,8 @@ function highScores(event) {
     lastPageBtns.innerHTML = '';
     inputValidation.innerHTML = '';
 
+    // set user input to highScoresArray & set to local Storage
     var input = document.querySelector("#initials").value;
-
     if (input.trim() != "") {
         highScoresArray.push(input + ": " + secondsLeft);
         localStorage.setItem("highScoreStorage", JSON.stringify(highScoresArray));
@@ -63,12 +61,14 @@ function highScores(event) {
     } else {
         inputValidation.innerHTML = "You did not enter valid initals, your score was not saved."
     }
+    // create Go Back Button
     var goBackBtn = document.createElement("button");
     goBackBtn.textContent = "Go Back";
     goBackBtn.className = "littleBtns";
     lastPageBtns.appendChild(goBackBtn);
     goBackBtn.addEventListener("click", restartGame);
 
+    // create Clear Highscores Button
     var clearHighScoresBtn = document.createElement("button");
     clearHighScoresBtn.textContent = "Clear Highscores";
     clearHighScoresBtn.className = "littleBtns";
@@ -112,19 +112,10 @@ function restartGame() {
 
 // function for End Game screen
 function endGame() {
-    inputInitials.innerHTML = '';
+    inputInitials.value = '';
     showQuestion.style.display = "none";
     endGameSection.style.display = "block";
     finalScore.innerHTML = "Your final score was " + secondsLeft;
-    // inputInitials.innerHTML = "Enter your initials:";
-    // var inputField = document.createElement("input");
-    // inputField.id = "initials";
-    // inputInitials.appendChild(inputField);
-
-    // var initialsSubmitBtn = document.createElement("button");
-    // initialsSubmitBtn.textContent = "Submit";
-    // initialsSubmitBtn.className = "littleBtns";
-    // inputInitials.appendChild(initialsSubmitBtn);
     initialsSubmitBtn.addEventListener("click", highScores);
 
 }
@@ -163,12 +154,14 @@ function isAnswerCorrect(event) {
         answerCheck.textContent = "Incorrect. Answer was: " + questions[questionIdx].answerChoices[questions[questionIdx].correctAnswer];
         secondsLeft = secondsLeft - 3;
     }
+
+    questionIdx++;
+
     if (questionIdx < questions.length) {
         var pauseseconds = 1;
         var pause = setInterval(function () {
             pauseseconds--
             if (pauseseconds === 0) {
-                questionIdx++;
                 displayQuestions();
                 clearInterval(pause)
             }
@@ -178,15 +171,13 @@ function isAnswerCorrect(event) {
 
 }
 
-
 // function to Display Questions
 function displayQuestions() {
     showQuestion.style.display = "block";
     choices.innerHTML = '';
     answerCheck.textContent = '';
-    var currentQuestion = (questions[questionIdx]);
+    var currentQuestion = questions[questionIdx];
     questionTitle.textContent = currentQuestion.question;
-
     currentQuestion.answerChoices.forEach((element, index) => {
         var currentAnswers = document.createElement("button");
         currentAnswers.id = index;
@@ -198,7 +189,6 @@ function displayQuestions() {
 
     });
 }
-
 
 // function to Start Timer
 function startTimer() {
@@ -217,10 +207,6 @@ function startTimer() {
     }, 1000)
 }
 
-
-
-
-
 // Function to display questions & start timer
 function startGame() {
     startScreen.style.display = "none";
@@ -228,15 +214,12 @@ function startGame() {
     startTimer();
 }
 
-
 // Starting Display upon refresh
 startScreen.style.display = "block";
 endGameSection.style.display = "none";
 showQuestion.style.display = "none";
 highScoresSection.style.display = "none";
 
-// Link to Highscores Page
-highscoresPage.addEventListener("click", HSPage);
 
 // event listener for Start Button
 startButton.addEventListener("click", startGame);
