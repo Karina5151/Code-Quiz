@@ -29,9 +29,20 @@ button {
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
-     display: inline-block;
+    display: inline-block;
     font-size: 16px;
     
+}
+
+#initSubBtn {
+    border-radius: 0px;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+#initials {
+    border: 10x solid black;
+    margin: 10px;
 }
 
 #answerCheck {
