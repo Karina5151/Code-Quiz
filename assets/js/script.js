@@ -19,15 +19,17 @@ var highScoresArray = []
 
 
 // function for Highscores Page
-function highScores(saveNewScore) {
-    saveNewScore.preventDefault();
+function highScores(saveScore) {
+    saveScore.preventDefault();
+    questionTitle.textContent = "Highscores";
+
     if (saveScore = inputField.value) {
-        highScoresArray.push(saveNewScore)
+        highScoresArray.push(saveScore)
         localStorage.setItem("highScoreStorage", JSON.stringify(highScoresArray));
         console.log(highScoresArray);
     }
     
-    // questionTitle.textContent = "Highscores";
+    
     // choices.forEach(function(highScores(saveScore) {
     //     console.log(highScoresArray)
     // }));
@@ -41,13 +43,13 @@ function endGame() {
     var inputField = document.createElement("input");
     inputField.id = "initials";
     inputInitials.appendChild(inputField);
-    let saveScore = '';
-    saveScore = inputField.value; 
+        let saveScore = '';
+        saveScore = inputField.value; 
     var initialsSubmitBtn = document.createElement("button");
     initialsSubmitBtn.textContent = "Submit";
     initialsSubmitBtn.id = "initSubBtn";
     inputInitials.appendChild(initialsSubmitBtn);
-    initialsSubmitBtn.addEventListener("click", highScores(saveNewScore));
+    initialsSubmitBtn.addEventListener("click", highScores(saveScore));
     
 }
 
