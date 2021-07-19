@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,35 +11,47 @@
 
 <body>
     <header>
-        <a class="highscores" href="scores.html" target="_blank">View Highscores!</a>
+        <a id="highscoresPage"class="highscores" href="scores.html" >View Highscores!</a>
         <div id="timer-section">
             <p class="timer">
-                <span id = "timeLeft">30</span> seconds remaining
+                <span id="timeLeft">30</span> seconds remaining
             </p>
         </div>
     </header>
 
+<!-- Start Screen Section -->
     <section id="start-screen">
         <h1 class="title">Coding Quiz Challenge</h1>
-            <p>Take this quiz to compare your knowledge of Javascript with the scores of your classmates.</p>
-            <button
-                id="start-button">
-                Start Quiz!
-            </button>
-            <div id="question-feedback"></div>
+        <p>Take this quiz to compare your knowledge of Javascript with the scores of your classmates.</p>
+        <button id="start-button">Start Quiz!</button>
     </section>
 
-
-
+<!-- Display Questions -->
     <section id="show-question">
         <h2 id="questionTitle"></h2>
-            <div id="choices"></div>
-            <div id="inputInitials"></div>
-            <div id="answerCheck"></div>
+        <div id="choices"></div>
+        <div id="answerCheck"></div>
     </section>
 
+<!-- Display End Game Screen -->
+    <section id="endGameSection">
+        <h2>End of Game</h2>
+        <div id="finalScore"></div>
+        <div>Enter your initials:
+            <input id = "initials"></input>
+            <button id="initialsSubmitBtn" class="littleBtns">Submit</button>
+        </div>
+    </section>
 
+<!-- Display Highscores Screen -->
+    <section id="highScoresSection">
+        <h2>Highscores</h2>
+        <div id="scores"></div>
+        <div id="lastPageBtns"></div>
+        <div id="inputValidation"></div>
+    </section>
 
-<script src="assets/js/script.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
+
 </html>
